@@ -5,6 +5,6 @@ class CommonColor {
   //次要色调
   static const secondary_color = 0xffd4237a;
 
-  //次要色调
+  //提示色调
   static const tips_color = 0xff999999;
 }
