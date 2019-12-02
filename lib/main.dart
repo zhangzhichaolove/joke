@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joke/widget/empty_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,10 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Hello Flutter'),
         ),
-        body: Center(
-          child: Text('Hello Flutter',
-          overflow: TextOverflow.ellipsis,),
-        ),
+        body: EmptyWidget(),
       ),
     );
   }
