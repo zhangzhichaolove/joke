@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
           title: Text('Hello Flutter'),
         ),
         body: Center(
-          child: Text('Hello Flutter'),
+          child: Text('Hello Flutter',
+          overflow: TextOverflow.ellipsis,),
         ),
       ),
     );
