@@ -14,9 +14,9 @@ class BottomNavigatorState extends State<BottomNavigator> {
   var tabImages;
   var tabPages;
 
-  final tabTextStyleNormal =
-      TextStyle(color: Color(CommonColor.main_color));
-  final tabTextStyleSelected = TextStyle(color: Color(CommonColor.secondary_color));
+  final tabTextStyleNormal = TextStyle(color: Color(CommonColor.main_color));
+  final tabTextStyleSelected =
+      TextStyle(color: Color(CommonColor.secondary_color));
   final tabTitles = <String>['精选', '发现', '我的'];
 
   var body;

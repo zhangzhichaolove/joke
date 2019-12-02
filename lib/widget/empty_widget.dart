@@ -19,7 +19,8 @@ class EmptyWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 5.0),
             child: Text(
               '暂无数据',
-              style: TextStyle(color: Color(CommonColor.tips_color), fontSize: 18.0),
+              style: TextStyle(
+                  color: Color(CommonColor.tips_color), fontSize: 18.0),
             ),
           )
         ],

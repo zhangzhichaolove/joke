@@ -1,8 +1,8 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:joke/bottom_navigator.dart';
-import 'package:joke/pages/splash_page.dart';
 import 'package:joke/pages/default_page.dart';
+import 'package:joke/pages/splash_page.dart';
 
 class RouterManager {
   static Router router;
