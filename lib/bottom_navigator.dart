@@ -83,20 +83,20 @@ class BottomNavigatorState extends State<BottomNavigator> {
       body: this.body,
       //bottomNavigationBar: CupertinoTabBar(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(CommonColor.tips_color),
+        backgroundColor: Color(CommonColor.bottom_navigation_bar_bg),
         items: [
           BottomNavigationBarItem(
               icon: getTabIcon(0),
               title: getTabTitle(0),
-              backgroundColor: Color(CommonColor.tips_color)),
+              backgroundColor: Color(CommonColor.bottom_navigation_bar_bg)),
           BottomNavigationBarItem(
               icon: getTabIcon(1),
               title: getTabTitle(1),
-              backgroundColor: Color(CommonColor.tips_color)),
+              backgroundColor: Color(CommonColor.bottom_navigation_bar_bg)),
           BottomNavigationBarItem(
               icon: getTabIcon(2),
               title: getTabTitle(2),
-              backgroundColor: Color(CommonColor.tips_color)),
+              backgroundColor: Color(CommonColor.bottom_navigation_bar_bg)),
         ],
         currentIndex: tabIndex,
         type: BottomNavigationBarType.fixed,
