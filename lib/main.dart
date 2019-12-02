@@ -1,22 +1,33 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:joke/widget/empty_widget.dart';
+import 'package:flutter/services.dart';
+import 'package:joke/common/common_color.dart';
+import 'package:joke/router/router_manager.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Router router = new Router();
+  RouterManager.configureRouter(router);
+  RouterManager.router = router;
+  runApp(AppRoot());
+  SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  );
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+}
 
-class MyApp extends StatelessWidget {
+class AppRoot extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _AppRootPageState();
+}
+
+class _AppRootPageState extends State<AppRoot> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hello Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(CommonColor.secondary_color),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Flutter'),
-        ),
-        body: EmptyWidget(),
-      ),
+      onGenerateRoute: RouterManager.router.generator,
     );
   }
 }
