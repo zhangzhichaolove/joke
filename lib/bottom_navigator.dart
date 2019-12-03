@@ -9,6 +9,8 @@ class BottomNavigator extends StatefulWidget {
 }
 
 class BottomNavigatorState extends State<BottomNavigator> {
+  PageController pageController;
+
   // 记录当前 tab 选择位置
   int tabIndex = 0;
   var tabImages;
@@ -24,6 +26,7 @@ class BottomNavigatorState extends State<BottomNavigator> {
   @override
   void initState() {
     super.initState();
+    pageController = new PageController(initialPage: this.tabIndex);
     tabImages ??= [
       [
         getTabImage('images/ic_chosen_normal.png'),
@@ -64,12 +67,19 @@ class BottomNavigatorState extends State<BottomNavigator> {
 
   Text getTabTitle(index) => Text(
         tabTitles[index],
-        style: getTabTextStyle(index),
       );
 
   void onTap(int index) {
     setState(() {
-      tabIndex = index;
+      this.tabIndex = index;
+    });
+    pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  void onPageChanged(int page) {
+    setState(() {
+      this.tabIndex = page;
     });
   }
 
@@ -79,7 +89,17 @@ class BottomNavigatorState extends State<BottomNavigator> {
       children: tabPages,
       index: tabIndex,
     );
+    body = PageView(
+      children: tabPages,
+      controller: pageController,
+      onPageChanged:
+          onPageChanged, /*physics: new NeverScrollableScrollPhysics(),*/
+    );
     return Scaffold(
+      appBar: new AppBar(
+        title: getTabTitle(tabIndex),
+        centerTitle: true,
+      ),
       body: this.body,
       //bottomNavigationBar: CupertinoTabBar(
       bottomNavigationBar: BottomNavigationBar(
