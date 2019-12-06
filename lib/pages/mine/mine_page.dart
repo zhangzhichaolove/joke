@@ -5,11 +5,19 @@ import 'package:joke/widget/list_item.dart';
 import 'package:joke/widget/top_bar_clipper.dart';
 
 ///个人中心
-class MinePage extends StatelessWidget {
-  EasyRefreshController _controller = EasyRefreshController();
+class MinePage extends StatefulWidget {
   final String title;
 
-  MinePage({Key key, this.title}) : super(key: key);
+  const MinePage({Key key, this.title}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return MinePageState();
+  }
+}
+
+class MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
+  EasyRefreshController _controller = EasyRefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -225,4 +233,7 @@ class MinePage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
