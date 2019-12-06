@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joke/common/common_constant.dart';
 import 'package:joke/router/router_manager.dart';
 
 class SplashPage extends StatefulWidget {
@@ -18,6 +19,7 @@ class SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    CommonConstant.init(context);
     return Scaffold(
       body: Container(
         alignment: Alignment.bottomCenter,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joke/common/common_color.dart';
 import 'package:joke/pages/default_page.dart';
+import 'package:joke/pages/mine/mine_page.dart';
 
 class BottomNavigator extends StatefulWidget {
   @override
@@ -22,6 +23,7 @@ class BottomNavigatorState extends State<BottomNavigator> {
   final tabTitles = <String>['精选', '发现', '我的'];
 
   var body;
+  var appBar;
 
   @override
   void initState() {
@@ -44,7 +46,7 @@ class BottomNavigatorState extends State<BottomNavigator> {
     tabPages ??= [
       DefaultPage(title: '精选'),
       DefaultPage(title: '发现'),
-      DefaultPage(title: '我的')
+      MinePage(title: '我的')
     ];
   }
 
@@ -95,11 +97,12 @@ class BottomNavigatorState extends State<BottomNavigator> {
       onPageChanged:
           onPageChanged, /*physics: new NeverScrollableScrollPhysics(),*/
     );
+    appBar = new AppBar(
+      title: getTabTitle(tabIndex),
+      centerTitle: true,
+    );
     return Scaffold(
-      appBar: new AppBar(
-        title: getTabTitle(tabIndex),
-        centerTitle: true,
-      ),
+      appBar: null,
       body: this.body,
       //bottomNavigationBar: CupertinoTabBar(
       bottomNavigationBar: BottomNavigationBar(
