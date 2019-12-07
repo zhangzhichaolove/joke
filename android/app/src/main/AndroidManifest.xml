@@ -8,8 +8,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="joke"
-        android:icon="@mipmap/ic_launcher">
+        android:label="内涵段子"
+        android:icon="@mipmap/icon_joke">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
