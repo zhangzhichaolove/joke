@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:joke/common/common_constant.dart';
-import 'package:joke/widget/list_item.dart';
-import 'package:joke/widget/top_bar_clipper.dart';
+import 'package:joke/widget/list_item_widget.dart';
+import 'package:joke/widget/top_bar_clipper_widget.dart';
 
 ///个人中心
 class MinePage extends StatefulWidget {

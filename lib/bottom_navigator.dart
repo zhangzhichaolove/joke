@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joke/common/common_color.dart';
+import 'package:joke/pages/choice/choice_page.dart';
 import 'package:joke/pages/default_page.dart';
+import 'package:joke/pages/discover/discover_page.dart';
 import 'package:joke/pages/mine/mine_page.dart';
 
 class BottomNavigator extends StatefulWidget {
@@ -44,8 +46,8 @@ class BottomNavigatorState extends State<BottomNavigator> {
       ],
     ];
     tabPages ??= [
-      DefaultPage(title: '精选'),
-      DefaultPage(title: '发现'),
+      ChoicePage(title: '精选'),
+      DiscoverPage(title: '发现'),
       MinePage(title: '我的')
     ];
   }
