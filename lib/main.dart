@@ -25,8 +25,8 @@ class _AppRootPageState extends State<AppRoot> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(CommonColor.secondary_color),
-      ),
+          primaryColor: Color(CommonColor.secondary_color),
+          accentColor: Color(CommonColor.secondary_color)),
       onGenerateRoute: RouterManager.router.generator,
     );
   }
