@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:joke/common/common_color.dart';
 import 'package:joke/router/router_manager.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/ball_pulse_header.dart';
+import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 
 void main() {
   Router router = new Router();
@@ -13,6 +16,10 @@ void main() {
     statusBarColor: Colors.transparent,
   );
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  //BallPulseHeader,MaterialHeader
+  EasyRefresh.defaultHeader = BallPulseHeader();
+  //BallPulseFooter,MaterialFooter
+  EasyRefresh.defaultFooter = BallPulseFooter();
 }
 
 class AppRoot extends StatefulWidget {

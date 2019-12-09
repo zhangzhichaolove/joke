@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
-import 'package:flutter_easyrefresh/material_footer.dart';
-import 'package:flutter_easyrefresh/ball_pulse_header.dart';
-import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:joke/widget/banner_item.dart';
 import 'package:joke/widget/banner_widget.dart';
 import 'package:joke/widget/sample_list_item_widget.dart';
@@ -25,7 +21,7 @@ class ChoicePagePageState extends State<ChoicePage>
   EasyRefreshController _controller = EasyRefreshController();
   final String title;
   var appBar;
-  int _count = 0;
+  int _count = 1;
 
   ChoicePagePageState(this.title);
 
@@ -53,13 +49,11 @@ class ChoicePagePageState extends State<ChoicePage>
         appBar: appBar,
         body: new EasyRefresh(
           emptyWidget: this._count == 0 ? EmptyWidget() : null,
+          firstRefresh: true,
           enableControlFinishRefresh: true,
-          enableControlFinishLoad: true,
+          enableControlFinishLoad: false,
           controller: _controller,
-          //BallPulseHeader,MaterialHeader
-          header: BallPulseHeader(),
-          //BallPulseFooter,MaterialFooter
-          footer: BallPulseFooter(),
+          headerIndex: 0,
           child: ListView.builder(
             padding: EdgeInsets.all(0.0),
             //shrinkWrap: true,
