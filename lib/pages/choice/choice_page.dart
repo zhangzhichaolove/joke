@@ -4,6 +4,8 @@ import 'package:joke/widget/banner_item.dart';
 import 'package:joke/widget/banner_widget.dart';
 import 'package:joke/widget/sample_list_item_widget.dart';
 import 'package:joke/widget/empty_widget.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 class ChoicePage extends StatefulWidget {
   final String title;
@@ -21,9 +23,32 @@ class ChoicePagePageState extends State<ChoicePage>
   EasyRefreshController _controller = EasyRefreshController();
   final String title;
   var appBar;
+  List<BannerItem> banners = new List();
   int _count = 1;
 
   ChoicePagePageState(this.title);
+
+  @override
+  void initState() {
+    super.initState();
+    this._getBanner();
+  }
+
+  void _getBanner() async {
+    var url = "http://192.168.1.168/v1/getBanner";
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      List result = convert.jsonDecode(response.body)['result'];
+      List<BannerItem> list = new List();
+      result.forEach((item) {
+        list.add(new BannerItem(imgUrl: item["bannerImage"]));
+      });
+      setState(() {
+        banners = list;
+      });
+      print(list);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -32,10 +32,12 @@ class _BannerViewState extends State<BannerView> {
 
   start() {
     stop();
-    timer = Timer.periodic(Duration(milliseconds: 3000), (timer) {
-      controller.animateToPage((controller.page.toInt() + 1) % banners.length,
-          duration: Duration(milliseconds: 300), curve: Curves.linear);
-    });
+    if (banners != null && banners.length > 0) {
+      timer = Timer.periodic(Duration(milliseconds: 3000), (timer) {
+        controller.animateToPage((controller.page.toInt() + 1) % banners.length,
+            duration: Duration(milliseconds: 300), curve: Curves.linear);
+      });
+    }
   }
 
   stop() {
@@ -62,7 +64,7 @@ class _BannerViewState extends State<BannerView> {
 
   Widget getViewPager() {
     return PageView.builder(
-        itemCount: banners.length,
+        itemCount: banners != null ? banners.length : 0,
         controller: controller,
         itemBuilder: (context, index) {
           return InkWell(
