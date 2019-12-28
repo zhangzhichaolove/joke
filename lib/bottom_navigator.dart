@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joke/common/common_color.dart';
+import 'package:joke/common/common_dio.dart';
 import 'package:joke/pages/choice/choice_page.dart';
 import 'package:joke/pages/default_page.dart';
 import 'package:joke/pages/discover/discover_page.dart';
@@ -30,6 +31,7 @@ class BottomNavigatorState extends State<BottomNavigator> {
   @override
   void initState() {
     super.initState();
+    _getVersion();
     pageController = new PageController(initialPage: this.tabIndex);
     tabImages ??= [
       [
@@ -50,6 +52,14 @@ class BottomNavigatorState extends State<BottomNavigator> {
       DiscoverPage(title: '发现'),
       MinePage(title: '我的')
     ];
+  }
+
+  void _getVersion() {
+    var param = {'versionType': 'android'};
+    CommonDio.instance.getJson("v1/getVersion",
+        parameters: param, method: CommonDio.GET, onSuccess: (data) {
+      print('获取到版本信息：$data');
+    });
   }
 
   Image getTabImage(imagePath) =>

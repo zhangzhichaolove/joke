@@ -70,19 +70,15 @@ class CommonDio {
     parameters = parameters ?? {};
     method = method ?? 'GET';
 
-    /// 请求处理
-    parameters.forEach((key, value) {
-      if (url.indexOf(key) != -1) {
-        url = url.replaceAll(':$key', value.toString());
-      }
-    });
     print('请求地址：[' + method + '  ' + url + ']');
     print('请求头：' + dio.options.headers.toString());
     print('请求参数：' + parameters.toString());
 
     try {
       Response response = await dio.request(url,
-          data: parameters, options: new Options(method: method));
+          data: parameters,
+          queryParameters: parameters,
+          options: new Options(method: method));
       final body = json.decode(response.toString());
       if (response.statusCode == 200 && body['code'] == 200) {
         print('响应数据：' + response.toString());
