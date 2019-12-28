@@ -11,17 +11,17 @@ class BannerView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _BannerViewState(height, banners);
+    return _BannerViewState();
   }
 }
 
 class _BannerViewState extends State<BannerView> {
-  final double height;
-  final List<BannerItem> banners;
+  double height;
+  List<BannerItem> banners;
   Timer timer;
   PageController controller;
 
-  _BannerViewState(this.height, this.banners);
+  //_BannerViewState(this.height, this.banners);
 
   @override
   void initState() {
@@ -32,10 +32,12 @@ class _BannerViewState extends State<BannerView> {
 
   start() {
     stop();
-    if (banners != null && banners.length > 0) {
+    if (widget.banners != null && widget.banners.length > 0) {
       timer = Timer.periodic(Duration(milliseconds: 3000), (timer) {
-        controller.animateToPage((controller.page.toInt() + 1) % banners.length,
-            duration: Duration(milliseconds: 300), curve: Curves.linear);
+        controller.animateToPage(
+            (controller.page.toInt() + 1) % widget.banners.length,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.linear);
       });
     }
   }
@@ -52,10 +54,16 @@ class _BannerViewState extends State<BannerView> {
   }
 
   @override
+  void didUpdateWidget(BannerView oldWidget) {
+    start();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black12,
-      height: height,
+      height: widget.height,
       child: Stack(
         children: <Widget>[getViewPager()],
       ),
@@ -64,11 +72,12 @@ class _BannerViewState extends State<BannerView> {
 
   Widget getViewPager() {
     return PageView.builder(
-        itemCount: banners != null ? banners.length : 0,
+        itemCount: widget.banners != null ? widget.banners.length : 0,
         controller: controller,
         itemBuilder: (context, index) {
           return InkWell(
-            child: Image.network(banners[index].imgUrl, fit: BoxFit.cover),
+            child:
+                Image.network(widget.banners[index].imgUrl, fit: BoxFit.cover),
             onTap: () {},
           );
         });

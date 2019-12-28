@@ -86,7 +86,7 @@ class ChoicePagePageState extends State<ChoicePage>
               return index == 0
                   ? BannerView(
                       height: 200,
-                      banners: list,
+                      banners: this.banners,
                     )
                   : SampleListItem();
             },
