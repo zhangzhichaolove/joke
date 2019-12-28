@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:joke/common/common_dio.dart';
 import 'package:joke/widget/banner_item.dart';
 import 'package:joke/widget/banner_widget.dart';
 import 'package:joke/widget/sample_list_item_widget.dart';
 import 'package:joke/widget/empty_widget.dart';
-import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
 
 class ChoicePage extends StatefulWidget {
   final String title;
@@ -34,20 +33,18 @@ class ChoicePagePageState extends State<ChoicePage>
     this._getBanner();
   }
 
-  void _getBanner() async {
-    var url = "http://192.168.1.168/v1/getBanner";
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      List result = convert.jsonDecode(response.body)['result'];
+  void _getBanner() {
+    var param = {'page': 1};
+    CommonDio.instance.getJson("v1/getBanner",
+        parameters: param, method: CommonDio.GET, onSuccess: (data) {
       List<BannerItem> list = new List();
-      result.forEach((item) {
+      data.forEach((item) {
         list.add(new BannerItem(imgUrl: item["bannerImage"]));
       });
       setState(() {
         banners = list;
       });
-      print(list);
-    }
+    });
   }
 
   @override
@@ -60,16 +57,6 @@ class ChoicePagePageState extends State<ChoicePage>
     );
 //    _controller.callRefresh();
 //    _controller.callLoad();
-    List<BannerItem> list = new List();
-    list.add(new BannerItem(
-        imgUrl:
-            'https://preview.qiantucdn.com/58pic/28/49/27/56858PIC2RNZyWeWB2Y5C_PIC2018.jpg!w1024_new_small'));
-    list.add(new BannerItem(
-        imgUrl:
-            'https://preview.qiantucdn.com/58pic/32/96/95/2658PIC58PIC458PIC6Kd518zaUSY_PIC2018.png!w1024_new_small'));
-    list.add(new BannerItem(
-        imgUrl:
-            'https://preview.qiantucdn.com/58pic/32/83/89/09R58PIC3Z1586MX5855d_PIC2018.png!w1024_new_small'));
     return Scaffold(
         appBar: appBar,
         body: new EasyRefresh(
