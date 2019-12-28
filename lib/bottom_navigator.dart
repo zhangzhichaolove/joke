@@ -97,6 +97,10 @@ class BottomNavigatorState extends State<BottomNavigator> {
     });
   }
 
+  void _incrementCounter() {
+    print('添加动态.');
+  }
+
   @override
   Widget build(BuildContext context) {
     body = IndexedStack(
@@ -136,6 +140,11 @@ class BottomNavigatorState extends State<BottomNavigator> {
         currentIndex: tabIndex,
         type: BottomNavigationBarType.fixed,
         onTap: onTap,
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: new Icon(Icons.add),
       ),
     );
   }
